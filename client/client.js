@@ -1,24 +1,20 @@
 import axios from "axios";
+import bcrypt from "bcrypt";
 
-const sendData = async () => {
-  const username = "admin";
-  const password = "test123";
-  const data = username.concat(":", password);
-
-  const saltRounds = 10;
-  const encodedData = Buffer.from(data).toString("base64");
-  console.log(encodedData);
+const login = async () => {
+  const username = "mohamed-msila";
+  const password = "mohamed2024";
   const options = {
     method: "POST",
-    url: "http://localhost:1000",
-    headers: {
-      "content-type": "text/plain",
+    url: "http://localhost:1000/login",
+    data: {
+      username,
+      password,
     },
-    data: encodedData,
   };
   const response = await axios.request(options);
-  // console.log(response.data);
+  console.log(response.data);
 };
 
-sendData();
-console.log("end.");
+login();
+console.log("End.");

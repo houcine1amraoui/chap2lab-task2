@@ -1,14 +1,21 @@
 import express from "express";
-import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
+import { users } from "./users.js";
+
 const app = express();
+app.use(express.json());
 
-const textParser = bodyParser.text();
-
-app.post("/", textParser, (req, res) => {
-  const encodedData = req.body;
-  const decodedData = Buffer.from(encodedData, "base64").toString("utf-8");
-  console.log(decodedData);
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const result = users.filter((user) => {
+    return user.username === username;
+  });
+  var match = false;
+  if (result) {
+    console.log(result[0]);
+    match = await bcrypt.compare(password, result[0].hashedPassword);
+  }
+  return res.send(match);
 });
 
 const PORT = 1000;
