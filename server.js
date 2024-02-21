@@ -7,13 +7,14 @@ app.use(express.json());
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  const result = users.filter((user) => {
-    return user.username === username;
-  });
   var match = false;
-  if (result) {
-    console.log(result[0]);
-    match = await bcrypt.compare(password, result[0].hashedPassword);
+  if (username && password) {
+    const result = users.filter((user) => {
+      return user.username === username;
+    });
+    if (result) {
+      match = await bcrypt.compare(password, result[0].hashedPassword);
+    }
   }
   return res.send(match);
 });
