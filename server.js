@@ -12,7 +12,9 @@ app.post("/login", async (req, res) => {
     const result = users.filter((user) => {
       return user.username === username;
     });
-    if (result) {
+    console.log(result);
+    if (result.length > 0) {
+      bcrypt.hash;
       match = await bcrypt.compare(password, result[0].hashedPassword);
     }
   }
