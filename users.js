@@ -1,4 +1,4 @@
-export const users = [
+export let users = [
   {
     id: "1",
     username: "mohamed-msila",
@@ -9,7 +9,7 @@ export const users = [
   {
     id: "2",
     username: "amina-msila",
-    clearPassword: "amina2024",
+    password: "amina2024",
     hashedPassword:
       "$2b$10$Mt6ZfY5qm4trsMDGW67eg.o67mg3zeE4oh.34TXrK6LeguZNGwUdi",
   },
