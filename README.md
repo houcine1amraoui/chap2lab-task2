@@ -1,4 +1,4 @@
-# Chapter 2 Lab - Task 1: Hashing
+# Chapter 2 Lab - Task 2: Hashing
 
 In this task, you will get a demonstration of how hashing can help in securely storing data. In particular, we see the use case of storing users’ password to perform authentication. You will also learn how to intercept traffic using Burp Suite.
 
