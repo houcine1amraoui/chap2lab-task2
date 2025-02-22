@@ -38,7 +38,7 @@ app.post("/login", async (req, res) => {
   var match = false;
   if (username && password) {
     // validation
-    const result = users.filter((user) => {
+    const result = users.find((user) => {
       return user.username === username;
     });
     if (result.length > 0) {
