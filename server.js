@@ -23,36 +23,31 @@ app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   const salt = 10;
   const hashedPassword = await bcrypt.hash(password, salt);
-  const newUser = {
-    username,
-    clearPassword: password,
-    hashedPassword,
-  };
-  users.push(newUser);
-  console.log(users);
-  return res.json(newUser);
+  // put your code here
 });
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  var match = false;
   if (username && password) {
     // validation
     const result = users.find((user) => {
       return user.username === username;
     });
-    if (result.length > 0) {
-      match = await bcrypt.compare(password, result[0].hashedPassword);
+    let match = false;
+    if (result) {
+      match = await bcrypt.compare(password, result.hashedPassword);
     }
     if (match) {
       return res.send("Welcome");
     } else {
-      return res.status(200).send("username or password incorrect");
+      return res.status(200).send("Invalid username or password");
     }
+  } else {
+    return res.status(403).send("Both username and password are required");
   }
 });
 
-const PORT = 1000;
+const PORT = 2000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
